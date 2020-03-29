@@ -1,4 +1,5 @@
 from .pages.product_page import ProductPage
+from .pages.locators import ProductPageLocators
 from selenium.common.exceptions import NoAlertPresentException
 import pytest
 
@@ -24,3 +25,25 @@ def test_guest_can_add_product_to_basket(browser, link):
     page.should_be_message_added_to_basket()
     page.should_be_same_price_product_and_bucket()
     pass
+
+@pytest.mark.xfail
+def test_guest_cant_see_success_message_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.press_button_add_product_to_basket()
+    assert page.is_not_element_present(*ProductPageLocators.PRODUCT_ADDED_TO_BASKET), "Guest see success message after adding to basket but should not"
+
+def test_guest_cant_see_success_message(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    page = ProductPage(browser, link)
+    page.open()
+    assert page.is_not_element_present(*ProductPageLocators.PRODUCT_ADDED_TO_BASKET), "Guest see success message but should not"
+
+@pytest.mark.xfail
+def test_message_disappeared_after_adding_product_to_basket(browser):
+    link = "http://selenium1py.pythonanywhere.com/catalogue/coders-at-work_207/"
+    page = ProductPage(browser, link)
+    page.open()
+    page.press_button_add_product_to_basket()
+    assert page.is_disappeared(*ProductPageLocators.PRODUCT_ADDED_TO_BASKET), "Success message after adding to basket did not disappear"

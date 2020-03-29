@@ -4,6 +4,8 @@ import time
 
 class ProductPage(BasePage):
     def press_button_add_product_to_basket(self):
+        assert self.is_element_present(*ProductPageLocators.BUTTON_ADD_TO_BASKET), (
+            "Button 'Add to basket' is not present")
         button = self.browser.find_element(*ProductPageLocators.BUTTON_ADD_TO_BASKET)
         button.click()
 
@@ -24,8 +26,6 @@ class ProductPage(BasePage):
             "Product name is not present on page")
         product_in_basket = self.browser.find_element(*ProductPageLocators.PRODUCT_ADDED_TO_BASKET).text
         product_name = self.browser.find_element(*ProductPageLocators.PRODUCT_NAME).text
-
-        print(f"===== product_in_basket={product_in_basket} and product_name={product_name}")
         assert product_name == product_in_basket, f"Product in basket ({product_in_basket}) is not '{product_name}'"
 
     def should_be_same_price_product_and_bucket(self):

@@ -1,5 +1,5 @@
 from .locators import ProductPageLocators
-from .base_page import BasePage
+from .page_with_header import PageWithHeader
 
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.ui import WebDriverWait
@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 import time
 
-class ProductPage(BasePage):
+class ProductPage(PageWithHeader):
     def press_button_add_product_to_basket(self):
         assert self.is_element_present(*ProductPageLocators.BUTTON_ADD_TO_BASKET), (
             "Button 'Add to basket' is not present")

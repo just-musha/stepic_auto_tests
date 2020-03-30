@@ -8,6 +8,7 @@ verify_ssl = true
 [packages]
 selenium = "==3.14.0"
 pytest = "==5.1.1"
+faker = "*"
 
 [requires]
 python_version = "3.7"

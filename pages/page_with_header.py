@@ -3,6 +3,9 @@ from .locators import PageWithHeaderLocators
 from selenium import webdriver
 
 class PageWithHeader(BasePage):
+    def __init__(self, *args, **kwargs):
+        super(PageWithHeader, self).__init__(*args, **kwargs)
+
     def go_to_basket(self):
         assert self.is_element_present(*PageWithHeaderLocators.LINK_VIEW_BASKET), (
             "Basket link is not present on top of Main page")

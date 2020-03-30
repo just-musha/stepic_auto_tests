@@ -21,6 +21,7 @@ class ProductPageLocators():
 
 class BasketPageLocators():
     EMPTY_BASKET_MESSAGE = (By.CSS_SELECTOR, "div.content p")
+    BASKET_ITEMS = (By.CSS_SELECTOR, "div.basket-items")
 
 class PageWithHeaderLocators():
     LINK_VIEW_BASKET = (By.CSS_SELECTOR, "div .basket-mini a.btn.btn-default")

@@ -9,4 +9,4 @@ class BasketPage(PageWithHeader):
         assert "basket is empty" in msg, f"Unexpected message: {msg}"
 
     def should_be_no_products(self):
-        pass
+        assert self.is_not_element_present(*BasketPageLocators.BASKET_ITEMS), "Unexpected items in basket"

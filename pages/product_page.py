@@ -46,7 +46,10 @@ class ProductPage(PageWithHeader):
 
     def should_not_be_success_message(self):
         assert self.is_not_element_present(*ProductPageLocators.PRODUCT_ADDED_TO_BASKET), \
-            "Success message is presented, but should not be"
+            "Success message is present, but should not be"
+
+    def should_disappere_success_message(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGES), "Success message did not disappear"
 
     def is_disappeared(self, how, what, timeout=4):
         try:
